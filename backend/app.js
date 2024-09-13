@@ -1,98 +1,68 @@
-const express = require('express');
-const fs = require('fs');
+const express = require("express");
+const fs = require("fs");
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 
 const readData = () => {
-  const data = fs.readFileSync('data.json');
+  const data = fs.readFileSync("data.json");
   return JSON.parse(data);
 };
 
 const writeData = (data) => {
-  fs.writeFileSync('data.json', JSON.stringify(data, null, 2));
+  fs.writeFileSync("data.json", JSON.stringify(data, null, 2));
 };
 
 // Get list of products
-app.get('/products', (req, res) => {
+app.get("/products", (req, res) => {
   const data = readData();
   res.json(data.products);
 });
 
 // Add a product to the list
-app.post('/products', (req, res) => {
+app.post("/products", (req, res) => {
   const data = readData();
-  const newProduct = { id: Date.now(), ...req.body };
+  const { id, name, price } = req.body;
+  const newProduct = {
+    id: id,
+    name: name,
+    price: price,
+  };
   data.products.push(newProduct);
   writeData(data);
   res.status(201).json(newProduct);
 });
 
 // Delete a product by ID
-app.delete('/products/:id', (req, res) => {
+app.delete("/products/:id", (req, res) => {
   const data = readData();
-  const id = parseInt(req.params.id);
+  const id = req.params.id;
   data.products = data.products.filter((product) => product.id !== id);
   writeData(data);
-  res.status(204).send();
+  res.status(204).send(data);
 });
 
-//
-app.delete('/products/:id', (req, res) => {
-    const data = readData();
-    const id = parseInt(req.params.id);
-    data.products = data.products.filter((product) => product.id !== id);
+// Update a product by ID
+app.put("/products/:id", (req, res) => {
+  const data = readData();
+  const productId = req.params.id;
+  const { price } = req.body;
+  const productIndex = data.products.findIndex((item) => item.id === productId);
+
+  if (productIndex !== -1) {
+    const updatedProduct = {
+      id: productId,
+      name: data.products[productIndex].name,
+      price: price || data.products[productIndex].price, // Keep old price if not provided
+    };
+
+    data.products[productIndex] = updatedProduct;
     writeData(data);
-    res.status(204).send();
-  });
-
-// Get cart items
-app.get('/cart', (req, res) => {
-  const data = readData();
-  res.json(data.cart);
-});
-
-// Add item to cart
-app.post('/cart', (req, res) => {
-  const data = readData();
-  const newItem = { id: Date.now(), ...req.body };
-  data.cart.push(newItem);
-  writeData(data);
-  res.status(201).json(newItem);
-});
-
-// Delete item from cart
-app.delete('/cart/:id', (req, res) => {
-  const data = readData();
-  const id = parseInt(req.params.id);
-  data.cart = data.cart.filter((item) => item.id !== id);
-  writeData(data);
-  res.status(204).send();
-});
-
-// Get wishlist items
-app.get('/wishlist', (req, res) => {
-  const data = readData();
-  res.json(data.wishlist);
-});
-
-// Add item to wishlist
-app.post('/wishlist', (req, res) => {
-  const data = readData();
-  const newItem = { id: Date.now(), ...req.body };
-  data.wishlist.push(newItem);
-  writeData(data);
-  res.status(201).json(newItem);
-});
-
-// Delete item from wishlist
-app.delete('/wishlist/:id', (req, res) => {
-  const data = readData();
-  const id = parseInt(req.params.id);
-  data.wishlist = data.wishlist.filter((item) => item.id !== id);
-  writeData(data);
-  res.status(204).send();
+    res.json(updatedProduct);
+  } else {
+    res.status(404).json({ error: "Product not found" });
+  }
 });
 
 app.listen(port, () => {
