@@ -38,6 +38,15 @@ app.delete('/products/:id', (req, res) => {
   res.status(204).send();
 });
 
+//
+app.delete('/products/:id', (req, res) => {
+    const data = readData();
+    const id = parseInt(req.params.id);
+    data.products = data.products.filter((product) => product.id !== id);
+    writeData(data);
+    res.status(204).send();
+  });
+
 // Get cart items
 app.get('/cart', (req, res) => {
   const data = readData();
