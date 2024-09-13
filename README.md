@@ -3,7 +3,7 @@ The app was built with a Node.js backend and a Flutter client(following MVVM arc
 
 - **Backend**: A RESTful API built using Node.js and Express that handles product management (located in the backend folder).
 - **Frontend**: A Flutter mobile application that interacts with the backend API (located in the frontend folder).
-- 
+  
 ### Screenshots
 
 <div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
