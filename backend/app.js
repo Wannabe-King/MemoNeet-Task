@@ -15,13 +15,13 @@ const writeData = (data) => {
 };
 
 // Get list of products
-app.get("/products", (req, res) => {
+app.get("/items", (req, res) => {
   const data = readData();
   res.json(data.products);
 });
 
 // Add a product to the list
-app.post("/products", (req, res) => {
+app.post("/items", (req, res) => {
   const data = readData();
   const { id, name, price } = req.body;
   const newProduct = {
@@ -35,7 +35,7 @@ app.post("/products", (req, res) => {
 });
 
 // Delete a product by ID
-app.delete("/products/:id", (req, res) => {
+app.delete("/items/:id", (req, res) => {
   const data = readData();
   const id = req.params.id;
   data.products = data.products.filter((product) => product.id !== id);
@@ -44,7 +44,7 @@ app.delete("/products/:id", (req, res) => {
 });
 
 // Update a product by ID
-app.put("/products/:id", (req, res) => {
+app.put("/items/:id", (req, res) => {
   const data = readData();
   const productId = req.params.id;
   const { price } = req.body;
