@@ -3,6 +3,18 @@ The app was built with a Node.js backend and a Flutter client(following MVVM arc
 
 - **Backend**: A RESTful API built using Node.js and Express that handles product management (located in the backend folder).
 - **Frontend**: A Flutter mobile application that interacts with the backend API (located in the frontend folder).
+- 
+### Screenshots
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+    <img src="https://github.com/Wannabe-King/MemoNeet-Task/blob/master/readmeData/Screenshot_1726224996.png" alt="Screenshot 1" style="width: 30%; margin-bottom: 10px;">
+    <img src="https://github.com/Wannabe-King/MemoNeet-Task/blob/master/readmeData/Screenshot_1726225303.png" alt="Screenshot 2" style="width: 30%; margin-bottom: 10px;">
+    <img src="https://github.com/Wannabe-King/MemoNeet-Task/blob/master/readmeData/Screenshot_1726225312.png" alt="Screenshot 6" style="width: 30%; margin-bottom: 10px;">
+    <img src="https://github.com/Wannabe-King/MemoNeet-Task/blob/master/readmeData/Screenshot_1726225316.png" alt="Screenshot 3" style="width: 30%; margin-bottom: 10px;">
+    <img src="https://github.com/Wannabe-King/MemoNeet-Task/blob/master/readmeData/Screenshot_1726225326.png" alt="Screenshot 4" style="width: 30%; margin-bottom: 10px;">
+    <img src="https://github.com/Wannabe-King/MemoNeet-Task/blob/master/readmeData/Screenshot_1726225360.png" alt="Screenshot 5" style="width: 30%; margin-bottom: 10px;">
+</div>
+
 
 ### Project Structure
 ```
