@@ -1,7 +1,7 @@
 # Memoneet Task
-The app was built with a Node.js backend and a Flutter client(following MVVM architecture). The project demonstrates a basic full-stack application where users can manage products, such as adding, updating, and deleting items. The project consists of two main components:
+The app was built with a Node.js backend and a Flutter client(**following MVVM architecture**). The project demonstrates a basic full-stack application where users can manage products, such as adding, updating, and deleting(**CRUD**) items. The project consists of two main components:
 
-- **Backend**: A RESTful API built using Node.js and Express that handles product management (located in the backend folder).
+- **Backend**: A RESTful API built using Node.js and Express that handles item management (located in the backend folder).
 - **Frontend**: A Flutter mobile application that interacts with the backend API (located in the frontend folder).
   
 ### Screenshots
